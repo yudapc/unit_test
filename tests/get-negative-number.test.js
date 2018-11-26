@@ -3,9 +3,8 @@ const chai = require("chai");
 const expect = chai.expect;
 const operation = require("../lib/get-negative-number");
 const getNegativeNumber = operation.getNegativeNumber;
-const countNegativeNumber = operation.countNegativeNumber;
-const doubleNumber = operation.doubleNumber;
 const countNumber = operation.countNumber;
+const doubleNumber = operation.doubleNumber;
 
 describe("test get negative number", () => {
   let arr = [];
@@ -20,10 +19,22 @@ describe("test get negative number", () => {
     });
   });
 
-  describe(".countNegativeNumber", () => {
-    it("should return count negative number", () => {
-      const expectedNumber = 4;
-      expect(countNegativeNumber(arr)).to.eql(expectedNumber);
+  describe(".countNumber", () => {
+    describe("Count Negative Number", () => {
+      it("should return count negative number", () => {
+        const expectedNumber = 4;
+        const getNegativeNumbers = () => getNegativeNumber(arr);
+        const countListNumber = countNumber(getNegativeNumbers)(arr);
+        expect(countListNumber).to.eql(expectedNumber);
+      });
+    });
+    describe("Count Positive Number", () => {
+      it("should return count positive number", () => {
+        const expectedNumber = 8;
+        const getPositiveNumbers = x => arr.filter(s => s >= 0);
+        const countListNumber = countNumber(getPositiveNumbers)(arr);
+        expect(countListNumber).to.eql(expectedNumber);
+      });
     });
   });
 
